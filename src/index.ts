@@ -1,7 +1,7 @@
-export * from './src/audit.module';
-export * from './src/audit.decorator';
-export * from './src/audit.service';
-export * from './src/audit.interceptor';
+export * from './audit.module';
+export * from './audit.decorator';
+export * from './audit.service';
+export * from './audit.interceptor';
 
 // src/interfaces/audit-options.interface.ts
 export interface AuditOptions {

@@ -1,11 +1,14 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { auditLogs } from './drizzle/audit-log.schema';
-import { AuditOptions } from './interfaces/audit-options.interface';
-import { DrizzleClient } from 'drizzle-orm';
+import { drizzle } from 'drizzle-orm/mysql2';
+
+type DrizzleClient = ReturnType<typeof drizzle>;
 
 @Injectable()
 export class AuditService {
-  constructor(@Inject('DRIZZLE_CLIENT') private db: DrizzleClient) {}
+  constructor(
+    @Inject('DRIZZLE_CLIENT') private db: DrizzleClient,
+    @Inject('AUDIT_SCHEMA') private schema: { auditLogs: any },
+  ) {}
 
   async record(options: {
     entity: string;
@@ -14,12 +17,12 @@ export class AuditService {
     newValue?: any;
     userId?: string;
   }) {
-    await this.db.insert(auditLogs).values({
+    await this.db.insert(this.schema.auditLogs).values({
       entity: options.entity,
       action: options.action,
       oldValue: options.oldValue ?? null,
       newValue: options.newValue ?? null,
-      userId: options.userId,
+      userId: options.userId ?? null,
     });
   }
 }

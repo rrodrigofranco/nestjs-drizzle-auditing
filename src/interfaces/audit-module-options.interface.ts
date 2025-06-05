@@ -5,3 +5,4 @@ export interface AuditSchema {
 export interface AuditModuleOptions {
   schema: AuditSchema;
 }
+

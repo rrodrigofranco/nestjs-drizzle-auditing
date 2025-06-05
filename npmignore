@@ -1,0 +1,10 @@
+src/
+__tests__/
+node_modules/
+test/
+coverage/
+README.md
+tsconfig.json
+tsconfig.build.json
+*.test.ts
+*.spec.ts

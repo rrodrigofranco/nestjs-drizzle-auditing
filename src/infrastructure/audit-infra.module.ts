@@ -11,7 +11,12 @@ import { auditLogs } from '../drizzle/audit-log.schema';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     AuditModule.forRootAsync({
-      schema: { auditLogs },
+        imports: [ConfigModule],
+        inject: [ConfigService, 'DRIZZLE_CLIENT'],
+        useFactory: (config: ConfigService, drizzleClient: any) => ({
+            schema: { auditLogs },
+            drizzleClient,
+        }),
     }),
   ],
   providers: [

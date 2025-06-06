@@ -4,15 +4,24 @@
   "description": "Auditing library for NestJS + Drizzle ORM",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": ["dist"],
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
+    "@nestjs/config": "^3.0.0",
     "drizzle-orm": "^0.24.6",
+    "mysql2": "^3.4.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/config": "^3.0.0",
+    "mysql2": "^3.0.0"
   },
   "devDependencies": {
     "typescript": "^5.2.2"

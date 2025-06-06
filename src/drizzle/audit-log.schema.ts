@@ -1,11 +1,17 @@
-import { pgTable, serial, text, timestamp, jsonb } from 'drizzle-orm/pg-core';
+import {
+  mysqlTable,
+  serial,
+  varchar,
+  json,
+  timestamp,
+} from 'drizzle-orm/mysql-core';
 
-export const auditLogs = pgTable('audit_logs', {
+export const auditLogs = mysqlTable('audit_logs', {
   id: serial('id').primaryKey(),
-  entity: text('entity').notNull(),
-  action: text('action').notNull(),
-  oldValue: jsonb('old_value'),
-  newValue: jsonb('new_value'),
-  userId: text('user_id'),
-  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+  entity: varchar('entity', { length: 100 }).notNull(),
+  action: varchar('action', { length: 50 }).notNull(),
+  oldValue: json('old_value'),
+  newValue: json('new_value'),
+  userId: varchar('user_id', { length: 64 }),
+  createdAt: timestamp('created_at', { mode: 'date' }).defaultNow(),
 });

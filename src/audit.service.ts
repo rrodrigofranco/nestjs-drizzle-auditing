@@ -1,7 +1,8 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { drizzle } from 'drizzle-orm/mysql2';
+import type { MySql2Database } from 'drizzle-orm/mysql2';
 
-type DrizzleClient = ReturnType<typeof drizzle>;
+type DrizzleClient = MySql2Database<any>;
 
 @Injectable()
 export class AuditService {
